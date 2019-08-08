@@ -347,9 +347,7 @@ Backup_HIToolbox()
 		rm "$volume_path"/Users/Shared/HIToolbox-Backup
 	fi
 
-	if [[ $volume_version_short == "10.14" ]]; then
-		cp "$volume_path"/System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/Versions/A/HIToolbox "$volume_path"/Users/Shared/HIToolbox-Backup
-	fi
+	cp "$volume_path"/System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/Versions/A/HIToolbox "$volume_path"/Users/Shared/HIToolbox-Backup
 	echo ${move_up}${erase_line}${text_success}"+ Backed up current HIToolbox."${erase_style}
 }
 
@@ -359,6 +357,11 @@ Patch_HIToolbox()
 	if [[ $volume_version_short == "10.14" ]]; then
 		rm "$volume_path"/System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/Versions/A/HIToolbox
 		cp "$patch_resources_path"/HIToolbox/${!hitoolbox_folder_version}/HIToolbox "$volume_path"/System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/Versions/A
+	fi
+
+	if [[ $volume_version_short == "10.15" ]]; then
+		rm "$volume_path"/System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/Versions/A/HIToolbox
+		cp "$patch_resources_path"/HIToolbox/${!hitoolbox_folder_build}/HIToolbox "$volume_path"/System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/Versions/A
 	fi
 	echo ${move_up}${erase_line}${text_success}"+ Installed HIToolbox patch."${erase_style}
 }
@@ -370,6 +373,11 @@ Remove_HIToolbox()
 		rm "$volume_path"/System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/Versions/A/HIToolbox
 		cp "$revert_resources_path"/HIToolbox/${!hitoolbox_folder_version}/HIToolbox "$volume_path"/System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/Versions/A
 	fi
+
+	if [[ $volume_version_short == "10.15" ]]; then
+		rm "$volume_path"/System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/Versions/A/HIToolbox
+		cp "$revert_resources_path"/HIToolbox/${!hitoolbox_folder_build}/HIToolbox "$volume_path"/System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/Versions/A
+	fi
 	echo ${move_up}${erase_line}${text_success}"+ Removed HIToolbox patch."${erase_style}
 }
 
@@ -380,9 +388,7 @@ Backup_New_HIToolbox()
 		rm "$volume_path"/Users/Shared/HIToolbox-BlueSky
 	fi
 
-	if [[ $volume_version_short == "10.14" ]]; then
-		cp "$volume_path"/System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/Versions/A/HIToolbox "$volume_path"/Users/Shared/HIToolbox-BlueSky
-	fi
+	cp "$volume_path"/System/Library/Frameworks/Carbon.framework/Frameworks/HIToolbox.framework/Versions/A/HIToolbox "$volume_path"/Users/Shared/HIToolbox-BlueSky
 	echo ${move_up}${erase_line}${text_success}"+ Backed up new HIToolbox."${erase_style}
 }
 
